@@ -2,20 +2,19 @@
 
 using namespace std;
 
-namespace PermAntyLex{
+namespace PermMInTr{
 	vector<int> *v;
 
 	void(*fun)(vector<int>&);
 
 	void perm(int m){
-		if (!m) fun(*v);
+		if (m == 1) fun(*v);
 		else{
-			for (int i = 0; i <= m; ++i){
+			for (int i = 0; i < m; ++i){
 				perm(m - 1);
-				if (i < m){
-					swap((*v)[i], (*v)[m]);
-					reverse(&(*v)[0], &(*v)[m]);
-				}
+				if (i < m - 1)  swap((*v)[(!(m & 1) && m > 2) ? 
+					(i < m - 1) ? i : m - 3 : m - 2], (*v)[m - 1]);
+				
 			}
 		}
 	}
